@@ -2,7 +2,7 @@ import logo from '../assets/logo.svg';
 
 export default function NavBar() {
   return (
-    <div className="navbar bg-base-100 font-montserrat gap-5">
+    <div className="navbar bg-base-100 font-montserrat gap-5 px-10 pt-5 pb-16">
       <div className="flex-none">
         <button>
           <img className="w-16" src={logo}/>

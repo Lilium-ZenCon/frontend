@@ -10,7 +10,8 @@ export default {
         "montserrat": ["Montserrat", "sans-serif"],
       },
       colors: {
-        "grey": "#676767"
+        "grey": "#676767",
+        "darkgreen": "#1F2421"
       }
     },
   },
