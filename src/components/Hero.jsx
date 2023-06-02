@@ -1,4 +1,5 @@
 import photos from '../assets/hero-photos.png'
+import background from '../assets/background-logo.png'
 
 export default function Hero() {
     return (
@@ -15,6 +16,7 @@ export default function Hero() {
                 <button className="mt-6 bg-darkgreen rounded-full px-6 py-1 text-white font-semibold hover:text-black btn btn-ghost normal-case text-md">Lorem ipsum</button>
             </div>
             <img className="absolute z-10 right-10 -bottom-44" src={photos}></img>
+            <img src={background} className='absolute -z-10 right-0 top-64'></img>
         </div>
     )
 }

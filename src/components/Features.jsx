@@ -2,7 +2,7 @@ import photos from '../assets/features-photos.png';
 
 export default function Features() {
   return (
-    <div className="bg-white flex items-start justify-center gap-16 p-16 mr-16">
+    <div className="bg-white flex items-start justify-center gap-16 p-16 pb-7 mr-16">
       <img src={photos} className='flex-3'></img>
       <div className='flex-1'>
         <h4 className="text-grey font-semibold mb-2 mt-10">Carbon Verifier</h4>
