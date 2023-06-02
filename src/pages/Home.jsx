@@ -1,3 +1,4 @@
+import Features from "../components/Features";
 import Hero from "../components/Hero";
 import Leaderboard from "../components/Leaderboard";
 import NavBar from "../components/NavBar";
@@ -8,6 +9,7 @@ export default function Home() {
             <NavBar/>
             <Hero/>
             <Leaderboard/>
+            <Features/>
         </div>
     )
 }
