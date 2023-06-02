@@ -1,4 +1,5 @@
 import LeaderboardHeader from "./LeaderboardHeader";
+import LeaderboardTable from "./LeaderboardTable";
 import Podium from "./Podium";
 
 export default function Leaderboard() {
@@ -12,6 +13,7 @@ export default function Leaderboard() {
                 <Podium place={'3rd'} company={"Gerdau"} tokens={27000}/>
             </div>
             <LeaderboardHeader/>
+            <LeaderboardTable/>
         </div>
     )
 }
