@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -11,6 +12,7 @@ export default {
       },
       colors: {
         "grey": "#676767",
+        "hover_grey": "#E0E0E0",
         "darkgreen": "#1F2421",
         "lightgreen": "#8D9F94"
       },
@@ -26,5 +28,5 @@ export default {
       }
     },
   },
-  plugins: [require("daisyui")],
-};
+  plugins: [],
+}
