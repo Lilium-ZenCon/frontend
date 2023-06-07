@@ -1,4 +1,5 @@
 import LeaderboardCard from "./LeaderboardCard";
+import SearchBar from "./SearchBar";
 import Table from "./Table";
 
 const Leaderboard = () => {
@@ -34,6 +35,10 @@ const Leaderboard = () => {
         })}
       </div>
       <div className="py-10">
+        <div className="w-full flex items-center justify-between text-white mb-3">
+          <h2 className="text-3xl font-semibold">All users</h2>
+          <SearchBar/>
+        </div>
         <Table/>
       </div>
     </div>
