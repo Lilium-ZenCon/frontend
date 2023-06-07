@@ -1,4 +1,5 @@
 import LeaderboardCard from "./LeaderboardCard";
+import Table from "./Table";
 
 const Leaderboard = () => {
   const leaderboardCards = [
@@ -8,7 +9,7 @@ const Leaderboard = () => {
   ];
 
   return (
-    <div className="bg-darkgreen w-full h-screen px-10">
+    <div className="bg-darkgreen w-full min-h-screen px-10">
       <div className="pt-20 text-white w-[40%]">
         <h1 className="text-6xl font-bold">
           Leaderboard
@@ -31,6 +32,9 @@ const Leaderboard = () => {
             />
           );
         })}
+      </div>
+      <div className="py-10">
+        <Table/>
       </div>
     </div>
   );
