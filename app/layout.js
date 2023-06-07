@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <head>
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
       </head>
-      <body className='font-montserrat'>
+      <body className='font-montserrat scroll-smooth'>
         <NavBar/>
         {children}
         </body>

@@ -1,8 +1,40 @@
+"use client"
+
+import { useState } from "react";
+
 import LeaderboardCard from "./LeaderboardCard";
 import SearchBar from "./SearchBar";
 import Table from "./Table";
 
+
 const Leaderboard = () => {
+  const data = [
+    {
+      id: 1,
+      company: {
+        name: 'Gerdau',
+        logo: 'https://media.licdn.com/dms/image/C4D0BAQFOflmqo6o0Zw/company-logo_200_200/0/1657129848248?e=2147483647&v=beta&t=ye07zO-CeE4C1yHlnzZVoRLI-haSpHxwdgOm-zXEUMs',
+        type: 'Steel',
+      },
+      tokens: 100,
+      status: 'Active',
+    },
+    {
+      id: 2,
+      company: {
+        name: 'Company B',
+        logo: 'https://example.com/logo2.png',
+        type: 'Type B',
+      },
+      tokens: 200,
+      status: 'Inactive',
+    },
+    // Add more data objects as needed
+  ];
+
+  const [filteredData, setFilteredData] = useState(data);
+
+
   const leaderboardCards = [
     { company: "Company 1", tokens: 100 },
     { company: "Company 2", tokens: 200 },
@@ -10,7 +42,7 @@ const Leaderboard = () => {
   ];
 
   return (
-    <div className="bg-darkgreen w-full min-h-screen px-10">
+    <div className="bg-darkgreen w-full min-h-screen px-10" id="leaderboard">
       <div className="pt-20 text-white w-[40%]">
         <h1 className="text-6xl font-bold">
           Leaderboard
@@ -37,9 +69,9 @@ const Leaderboard = () => {
       <div className="py-10">
         <div className="w-full flex items-center justify-between text-white mb-3">
           <h2 className="text-3xl font-semibold">All users</h2>
-          <SearchBar/>
+          <SearchBar data={data} setFilteredData={setFilteredData}/>
         </div>
-        <Table/>
+        <Table data={filteredData}/>
       </div>
     </div>
   );

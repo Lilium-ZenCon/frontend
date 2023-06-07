@@ -11,10 +11,10 @@ const NavBar = () => {
           width="50"
           height="50"
         />
-        <li className="list-none gap-14 flex items-center ">
-          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#">Lorem</a>
-          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#">Lorem</a>
-          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#">Lorem</a>
+        <li className="list-none gap-14 flex items-center scroll-smooth	">
+          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#">Home</a>
+          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#leaderboard">Leaderboard</a>
+          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#">How it works</a>
         </li>
       </span>
       <button type="button" className="hover:bg-hover_grey px-4 py-2 rounded-full border-[1px] border-grey transition duration-300 ease-in-out">Connect wallet</button>

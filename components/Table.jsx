@@ -1,28 +1,5 @@
-const Table = () => {
-  const data = [
-    {
-      id: 1,
-      company: {
-        name: 'Gerdau',
-        logo: 'https://media.licdn.com/dms/image/C4D0BAQFOflmqo6o0Zw/company-logo_200_200/0/1657129848248?e=2147483647&v=beta&t=ye07zO-CeE4C1yHlnzZVoRLI-haSpHxwdgOm-zXEUMs',
-        type: 'Steel',
-      },
-      tokens: 100,
-      status: 'Active',
-    },
-    {
-      id: 2,
-      company: {
-        name: 'Company B',
-        logo: 'https://example.com/logo2.png',
-        type: 'Type B',
-      },
-      tokens: 200,
-      status: 'Inactive',
-    },
-    // Add more data objects as needed
-  ];
-
+const Table = ({data}) => {
+  
   return (
     <table className="w-full bg-white rounded-md">
       <thead className="rounded-md">
