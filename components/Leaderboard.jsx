@@ -1,7 +1,15 @@
+import LeaderboardCard from "./LeaderboardCard";
+
 const Leaderboard = () => {
+  const leaderboardCards = [
+    { company: "Company 1", tokens: 100 },
+    { company: "Company 2", tokens: 200 },
+    { company: "Company 3", tokens: 300 },
+  ];
+
   return (
-    <div className="bg-darkgreen w-full h-screen">
-      <div className="pt-20 mx-10 text-white w-[40%]">
+    <div className="bg-darkgreen w-full h-screen px-10">
+      <div className="pt-20 text-white w-[40%]">
         <h1 className="text-6xl font-bold">
           Leaderboard
         </h1>
@@ -12,8 +20,17 @@ const Leaderboard = () => {
           metus.
         </p>
       </div>
-      <div>
-        
+      <div className="flex gap-5 justify-between w-full mt-8">
+        {leaderboardCards.slice(0, 3).map((card, index) => {
+          return (
+            <LeaderboardCard
+              key={index}
+              place={index + 1}
+              company={card.company}
+              tokens={card.tokens}
+            />
+          );
+        })}
       </div>
     </div>
   );
