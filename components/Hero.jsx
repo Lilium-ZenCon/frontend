@@ -2,7 +2,7 @@ const Hero = () => {
   return (
     <div id="hero" className="flex my-16 mx-10">
         <div className="flex flex-col justify-center w-[40%]">
-            <h5 className="text-sm font-bold text-grey mb-3">Carbon Verifier</h5>
+            <h5 className="text-sm font-bold text-grey mb-3">Green Trace</h5>
             <h1 className="text-6xl font-bold mb-2 leading-tight">Change the<br/>world with<br/>small actions</h1>
             <p className="text-md mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed facilisis diam. Praesent tincidunt lobortis turpis. In vehicula posuere iaculis. Nunc a metus eu turpis ultrices tincidunt sed sed metus.</p>
         </div>
