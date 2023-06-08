@@ -3,12 +3,14 @@
 import Image from "next/image";
 import logo from "../public/assets/icon.svg";
 import WalletContext from "@/context/WalletContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ConnectWallet from "./ConnectWallet";
 
 const NavBar = () => {
 
   const {walletAddress, setWalletAddress, walletIsConnected, setWalletIsConnected} = useContext(WalletContext)
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 
   return (
@@ -26,7 +28,8 @@ const NavBar = () => {
           <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#">How it works</a>
         </li>
       </span>
-      <ConnectWallet walletAddress={walletAddress} setWalletAddress={setWalletAddress} walletIsConnected={walletIsConnected} setWalletIsConnected={setWalletIsConnected}/>
+      <ConnectWallet walletAddress={walletAddress} setWalletAddress={setWalletAddress} walletIsConnected={walletIsConnected} setWalletIsConnected={setWalletIsConnected} setIsDropdownOpen={setIsDropdownOpen} isDropdownOpen={isDropdownOpen}/>
+
     </div>
   );
 };
