@@ -14,6 +14,14 @@ const page = () => {
     const [flightOrigin, setFlightOrigin] = useState('')
     const [flightDestination, setFlightDestination] = useState('')
     const [flightTokens, setFlightTokens] = useState(0)
+    const [hotelTokens, setHotelTokens] = useState(0)
+    const [carTokens, setCarTokens] = useState(0)
+    const [nights, setNights] = useState(0)
+    const [hotelCity, setHotelCity] = useState('')
+    const [hotelState, setHotelState] = useState('')
+    const [hotelCountry, setHotelCountry] = useState('')
+    const [distance, setDistance] = useState(0)
+    const [fuelEfficiency, setFuelEfficiency] = useState(0)
 
 
     const retireTokens = () => {
@@ -21,6 +29,12 @@ const page = () => {
     }
 
     const estimateFlightEmissions = () => {
+    }
+
+    const estimateHotelEmissions = () => {
+    }
+
+    const estimateCarEmissions = () => {
     }
 
   return (
@@ -75,23 +89,48 @@ const page = () => {
             <h3 className='font-bold text-white text-3xl pt-3 mb-4'>Offset a hotel stay</h3>
             <div className='flex items-end justify-between mb-5 w-[80%]'>
                 <label className='w-1/3'>
-                    <p className='text-sm'>Origin</p>
-                    <input className='rounded-lg text-black px-1 w-3/4'></input>
+                    <p className='text-sm'>Nights</p>
+                    <input className='rounded-lg text-black px-1 w-3/4' value={nights} onChange={(e) => setNights(e.target.value)}></input>
                 </label>
                 <label  className='w-1/3'>
-                    <p className='text-sm'>Destination</p>
-                    <input className='rounded-lg text-black px-1 w-3/4'></input>
+                    <p className='text-sm'>Country</p>
+                    <input className='rounded-lg text-black px-1 w-3/4'
+                    value={hotelCountry} onChange={(e) => setHotelCountry(e.target.value)}></input>
                 </label>
-                <button onClick={estimateFlightEmissions} className='px-4 py-1 rounded-full bg-lightgreen text-white'>Estimate</button>
+                <label  className='w-1/3'>
+                    <p className='text-sm'>State</p>
+                    <input className='rounded-lg text-black px-1 w-3/4'
+                    value={hotelState} onChange={(e) => setHotelState(e.target.value)}></input>
+                </label>
+                <label  className='w-1/3'>
+                    <p className='text-sm'>City</p>
+                    <input className='rounded-lg text-black px-1 w-3/4'
+                    value={hotelCity} onChange={(e) => setHotelCity(e.target.value)}></input>
+                </label>
+                <button onClick={estimateHotelEmissions} className='px-4 py-1 rounded-full bg-lightgreen text-white'>Estimate</button>
             </div>
-            <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{flightTokens}</p>
+            <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{hotelTokens}</p>
             <button className='bg-dark_grey text-white font-semibold py-5 px-2 rounded-lg cursor-pointer mt-6 w-full' onClick={retireTokens}>Retire</button>
         </div>}
 
             {type === 'car' &&
-            <div className=' mt-4 flex flex-col  items-center justify-center'>
-                CAR
-            </div>}
+            <div className=' mt-4 flex flex-col items-center justify-center text-white'>
+            <h3 className='font-bold text-white text-3xl pt-3 mb-4'>Offset a car ride</h3>
+            <div className='flex items-end justify-between mb-5 w-[80%]'>
+                <label className='w-1/2'>
+                    <p className='text-sm'>Km traveled</p>
+                    <input className='rounded-lg text-black px-1 w-3/4' value={distance} onChange={(e) => setDistance(e.target.value)}></input>
+                </label>
+                <label  className='w-1/2'>
+                    <p className='text-sm'>Fuel efficiency (km/l)</p>
+                    <input className='rounded-lg text-black px-1 w-3/4'
+                    value={fuelEfficiency} onChange={(e) => setFuelEfficiency(e.target.value)}></input>
+                </label>
+                <button onClick={estimateHotelEmissions} className='px-4 py-1 rounded-full bg-lightgreen text-white'>Estimate</button>
+            </div>
+            <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{carTokens}</p>
+            <button className='bg-dark_grey text-white font-semibold py-5 px-2 rounded-lg cursor-pointer mt-6 w-full' onClick={retireTokens}>Retire</button>
+        </div>}
         </div>
     </div>
   )
