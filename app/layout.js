@@ -5,11 +5,6 @@ import './globals.css'
 import WalletContext from '@/context/WalletContext'
 import { useState } from 'react'
 
-export const metadata = {
-  title: 'Carbon Verifier',
-  description: 'Verify, track and offset your carbon footprint.',
-}
-
 export default function RootLayout({ children }) {
 
   const [walletAddress, setWalletAddress] = useState('')

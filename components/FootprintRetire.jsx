@@ -43,6 +43,7 @@ const FootprintRetire = ({title, typesName}) => {
     }
 
     return (
+        <div>
     <div className=' mt-4 flex flex-col items-center justify-center text-white'>
             <h3 className='font-bold text-white text-3xl pt-3'>Offset a {title}</h3>
             <p className='text-sm mb-5'>You have 0 carbon tokens</p>
@@ -66,6 +67,7 @@ const FootprintRetire = ({title, typesName}) => {
             </div>
             <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{tokens}</p>
             <button className='bg-dark_grey text-white font-semibold py-5 px-2 rounded-lg cursor-pointer mt-6 w-full' onClick={retireTokens}>Retire</button>
+        </div>
         </div>
   )
 }
