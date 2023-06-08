@@ -7,6 +7,8 @@ import {TbBrandCarbon} from 'react-icons/tb'
 import { AiFillCar } from 'react-icons/ai'
 import { FaHotel } from 'react-icons/fa'
 
+const carTypes = ['SmallDieselCar', 'MediumDieselCar', 'LargeDieselCar', 'MediumHybridCar', 'LargeHybridCar', 'MediumLPGCar', 'LargeLPGCar', 'MediumCNGCar', 'LargeCNGCar', 'SmallPetrolVan', 'LargePetrolVan', 'SmallDielselVan', 'MediumDielselVan', 'LargeDielselVan', 'LPGVan', 'CNGVan', 'SmallPetrolCar', 'MediumPetrolCar', 'LargePetrolCar', 'SmallMotorBike', 'MediumMotorBike', 'LargeMotorBike']
+
 const page = () => {
 
     const [type, setType] = useState('carbon')
@@ -21,7 +23,7 @@ const page = () => {
     const [hotelState, setHotelState] = useState('')
     const [hotelCountry, setHotelCountry] = useState('')
     const [distance, setDistance] = useState(0)
-    const [fuelEfficiency, setFuelEfficiency] = useState(0)
+    const [selectedCar, setSelectedCar] = useState('');
 
 
     const retireTokens = () => {
@@ -34,7 +36,24 @@ const page = () => {
     const estimateHotelEmissions = () => {
     }
 
-    const estimateCarEmissions = () => {
+    const estimateCarEmissions = async () => {
+        const url = `https://carbonfootprint1.p.rapidapi.com/CarbonFootprintFromCarTravel?distance=${distance}&vehicle=${selectedCar}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '497da21dedmsh0c4adf01f520c40p15a212jsn1ff7b1ddb839',
+                'X-RapidAPI-Host': 'carbonfootprint1.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+            console.log(result.carbonEquivalent);
+            setCarTokens(Number(result.carbonEquivalent) / 1000)
+        } catch (error) {
+            console.error(error);
+        }
     }
 
   return (
@@ -119,14 +138,20 @@ const page = () => {
             <div className='flex items-end justify-between mb-5 w-[80%]'>
                 <label className='w-1/2'>
                     <p className='text-sm'>Km traveled</p>
-                    <input className='rounded-lg text-black px-1 w-3/4' value={distance} onChange={(e) => setDistance(e.target.value)}></input>
+                    <input className='rounded-full text-black px-1 w-3/4 h-7' value={distance} onChange={(e) => setDistance(e.target.value)}></input>
                 </label>
                 <label  className='w-1/2'>
-                    <p className='text-sm'>Fuel efficiency (km/l)</p>
-                    <input className='rounded-lg text-black px-1 w-3/4'
-                    value={fuelEfficiency} onChange={(e) => setFuelEfficiency(e.target.value)}></input>
+                    <p className='text-s'>Car type</p>
+                    <select id="carTypes" className='text-black rounded-full h-7' value={selectedCar} onChange={(e) => setSelectedCar(e.target.value)}>
+                        <option disabled value="">Select</option>
+                        {carTypes.map((carType) => (
+                        <option key={carType} value={carType}>
+                        {carType}
+                        </option>
+        ))}
+      </select>
                 </label>
-                <button onClick={estimateHotelEmissions} className='px-4 py-1 rounded-full bg-lightgreen text-white'>Estimate</button>
+                <button onClick={estimateCarEmissions} className='px-4 py-1 rounded-full bg-lightgreen text-white h-7'>Estimate</button>
             </div>
             <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{carTokens}</p>
             <button className='bg-dark_grey text-white font-semibold py-5 px-2 rounded-lg cursor-pointer mt-6 w-full' onClick={retireTokens}>Retire</button>

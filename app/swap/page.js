@@ -20,7 +20,7 @@ const swap = () => {
                         </select>
                     </div>
                 </div> 
-                <div className='flex flex-col  items-center justify-center my-4 '>
+                <div className='flex flex-col items-center justify-center my-4 '>
                     <Image
                     src={arrow}
                     alt="arrow"
@@ -47,7 +47,7 @@ const swap = () => {
             </div>
         
                 <Image
-                className='bottom-0 right-0  z-0 absolute'
+                className='bottom-0 right-0  -z-10 absolute'
                 src={logo}
                 alt="logo"
                 width="450"
