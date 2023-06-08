@@ -5,6 +5,7 @@ import logo from "../public/assets/icon.svg";
 import WalletContext from "@/context/WalletContext";
 import { useContext, useState } from "react";
 import ConnectWallet from "./ConnectWallet";
+import Link from "next/link";
 
 const NavBar = () => {
 
@@ -23,9 +24,9 @@ const NavBar = () => {
           height="50"
         />
         <li className="list-none gap-14 flex items-center scroll-smooth	">
-          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#hero">Home</a>
-          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#leaderboard">Leaderboard</a>
-          <a className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="#how-it-works">How it works</a>
+          <Link className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="/">Home</Link>
+          <Link className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="/#leaderboard">Leaderboard</Link>
+          <Link className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" href="/">How it works</Link>
         </li>
       </span>
       <ConnectWallet walletAddress={walletAddress} setWalletAddress={setWalletAddress} walletIsConnected={walletIsConnected} setWalletIsConnected={setWalletIsConnected} setIsDropdownOpen={setIsDropdownOpen} isDropdownOpen={isDropdownOpen}/>

@@ -1,3 +1,6 @@
+import Link from 'next/link';
+
+
 const ConnectWallet = (
   {
     walletAddress,
@@ -36,8 +39,8 @@ const ConnectWallet = (
       </button>
       {isDropdownOpen && (
         <div className="absolute top-11 right-0 bg-white rounded-lg shadow-lg text-right">
-          <p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer">Swap tokens</p>
-          <p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer">Offset your carbon footprint</p>
+          <p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer"><Link href="/swap">Swap tokens</Link></p>
+          <p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer"><Link href="/offset">Offset your carbon footprint</Link></p>
         </div>
       )}
     </div>
