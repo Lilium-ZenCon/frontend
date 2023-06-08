@@ -14,7 +14,8 @@ module.exports = {
         "grey": "#676767",
         "hover_grey": "#E0E0E0",
         "darkgreen": "#1F2421",
-        "lightgreen": "#8D9F94"
+        "lightgreen": "#8D9F94",
+        "dark_grey": "#383C39"
       },
       fontSize: {
         sm: '0.8rem',
