@@ -1,7 +1,7 @@
 import Hero from '@/components/Hero'
 import Image from 'next/image'
-import logo from '../public/assets/bg.png'
-import heroPic from '../public/assets/hero-photos.png'
+import logo from 'public/assets/hero-logo.svg'
+import heroPic from 'public/assets/hero-img.svg'
 import Leaderboard from '@/components/Leaderboard'
 
 export default function Home() {
