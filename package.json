@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@pinata/sdk": "^2.1.0",
     "autoprefixer": "10.4.14",
     "chart.js": "^4.3.0",
     "ethers": "^5.7.2",
