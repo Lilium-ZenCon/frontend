@@ -65,7 +65,7 @@ const FootprintRetire = ({title, typesName}) => {
                 </label>
                 <button onClick={estimateEmissions} className='px-4 py-1 rounded-full bg-lightgreen text-white h-7'>Estimate</button>
             </div>
-            <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{tokens}</p>
+            <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{tokens.toFixed(10)}</p>
             <button className='bg-dark_grey text-white font-semibold py-5 px-2 rounded-lg cursor-pointer mt-6 w-full' onClick={retireTokens}>Retire</button>
         </div>
         </div>
