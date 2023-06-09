@@ -64,10 +64,7 @@ const Leaderboard = () => {
           Leaderboard
         </h1>
         <p className="text-md mt-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          sed facilisis diam. Praesent tincidunt lobortis turpis. In vehicula
-          posuere iaculis. Nunc a metus eu turpis ultrices tincidunt sed sed
-          metus.
+        GreenTrace celebrates the achievements of companies and climate action projects through our engaging leaderboards. On the leaderboard, you can discover the top contributing companies in carbon credits!
         </p>
       </div>
       <div className="flex gap-5 justify-between w-full mt-8">
