@@ -24,7 +24,7 @@ const company = () => {
         });
 
         const ImgHash = `ipfs://${resFile.data.IpfsHash}`;
-        console.log(ImgHash);
+        return ImgHash
         //Take a look at your Pinata Pinned section, you will see a new file added to you list.
       } catch (error) {
         console.log("Error sending File to IPFS: ");
@@ -32,6 +32,12 @@ const company = () => {
       }
     }
   };
+
+  const sendData = () => {
+    let URI = sendFileToIPFS();
+    console.log(URI);
+    
+  }
 
   return (
     <div>
@@ -70,7 +76,7 @@ const company = () => {
             <button
               type="submit"
               className="text-white focus:outline-none bg-grey font-semibold p-2 rounded-lg w-[100%] my-6 hover:bg-white hover:text-grey border-grey transition duration-300 ease-in-out"
-              onClick={sendFileToIPFS}
+              onClick={sendData}
             >
               Register
             </button>
