@@ -1,6 +1,8 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
+import CompaniesFactory from "../../abis/CompaniesFactory.json";
+import { ethers } from "ethers";
 
 // Use the api keys by providing the strings directly
 
@@ -10,7 +12,6 @@ const company = () => {
   const [companyType, setCompanyType] = useState(null);
   const [companyOwner, setCompanyOwner] = useState(null);
   const [country, setCountry] = useState(null);
-
 
   const sendFileToIPFS = async (e) => {
     if (fileImg) {
@@ -29,7 +30,7 @@ const company = () => {
           },
         });
 
-        const ImgHash = `ipfs://${resFile.data.IpfsHash}`;
+        const ImgHash = `https://ipfs.io/ipfs/${resFile.data.IpfsHash}`;
         return ImgHash
         //Take a look at your Pinata Pinned section, you will see a new file added to you list.
       } catch (error) {
@@ -45,11 +46,32 @@ const company = () => {
 
     let URI = await sendFileToIPFS();
     console.log(URI);
-    //const contractAddress = '0x820cBd25Da806EDb97B944aA82F745dCb2357AFB';
-    //const contractABI = Token.abi;
-    // const provider = new ethers.providers.Web3Provider(ethereum);
-    //   const signer = provider.getSigner();
-    //   const companyFactory = new ethers.Contract(contractAddress, contractABI, signer);
+    const contractAddress = '0xaCAD05f1538182b63757BA3B8a7d750C97c52390';
+    const contractABI = CompaniesFactory.abi;
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const companyFactory = new ethers.Contract(contractAddress, contractABI, signer);
+
+    let info = ''
+    const result = await companyFactory.createCompanies('0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada', '0xaFc796F03Fb2135579B88E9Ad6C7AE4DA600B199',
+    'a', 
+    'a',
+    '0xfD6bC6A51D75Ce69bb8ba7Fa684eb2DeDa0D37e0',
+    'a',
+    2,
+    50,
+    URI);
+    console.log(result);
+    companyFactory.on("NewCompaniesCreated", (address) => {
+    info = {
+      address: address
+    };
+    console.log(JSON.stringify(info));
+  });
+
+  companyFactory.companiesLeaderboard('0xCd6906C2d9b75C57755caF7AE3DE88F931d6B8f8').then((result) => {
+    console.log(result);
+  });
     
   }
 
