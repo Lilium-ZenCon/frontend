@@ -1,13 +1,29 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import LeaderboardCard from "./LeaderboardCard";
 import SearchBar from "./SearchBar";
 import Table from "./Table";
-
+//import Token from '../../abis/Token.json';
+import { ethers } from "ethers";
 
 const Leaderboard = () => {
+
+  useEffect(() => {
+    const getLeaderboard = async () => {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      //const keyboardsContract = new ethers.Contract(contractAddress, contractABI, signer);
+      //let result = await keyboardsContract.balanceOf('0xfD6bC6A51D75Ce69bb8ba7Fa684eb2DeDa0D37e0')
+      //console.log('result ', result.toString())
+  }
+    if (typeof window.ethereum !== 'undefined') {
+      getLeaderboard();
+    }
+  }, [])
+
+
   const data = [
     {
       id: 1,
