@@ -6,6 +6,12 @@ import { useState } from "react";
 
 const company = () => {
   const [fileImg, setFileImg] = useState(null);
+  const [companyName, setCompanyName] = useState(null);
+  const [companyType, setCompanyType] = useState(null);
+  const [companyOwner, setCompanyOwner] = useState(null);
+  const [country, setCountry] = useState(null);
+
+
   const sendFileToIPFS = async (e) => {
     if (fileImg) {
       try {
@@ -33,9 +39,17 @@ const company = () => {
     }
   };
 
-  const sendData = () => {
-    let URI = sendFileToIPFS();
+  const sendData = async () => {
+  
+
+
+    let URI = await sendFileToIPFS();
     console.log(URI);
+    //const contractAddress = '0x820cBd25Da806EDb97B944aA82F745dCb2357AFB';
+    //const contractABI = Token.abi;
+    // const provider = new ethers.providers.Web3Provider(ethereum);
+    //   const signer = provider.getSigner();
+    //   const companyFactory = new ethers.Contract(contractAddress, contractABI, signer);
     
   }
 
@@ -51,19 +65,20 @@ const company = () => {
             </div>
             <div className="py-4 flex flex-col">
               <label className=" text-white py-1">Company Name:</label>
-              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"></input>
+              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none" onChange={(e) => setCompanyName(e.target.result)}></input>
             </div>
             <div className="py-4 flex flex-col">
               <label className=" text-white py-1">Company Type:</label>
-              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"></input>
+              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none" onChange={(e) => setCompanyType(e.target.result)} ></input>
             </div>
             <div className="py-4 flex flex-col">
               <label className=" text-white py-1">Company Owner:</label>
-              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"></input>
+              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none" onChange={(e) => setCompanyOwner(e.target.result)}></input>
             </div>
             <div className="py-4 flex flex-col">
               <label className=" text-white py-1">Country:</label>
-              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"></input>
+              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"
+              onChange={(e) => setCompanyCountry(e.target.result)}></input>
             </div>
             <div className="py-4 flex flex-col">
               <label className=" text-white py-1">Logo URI:</label>
