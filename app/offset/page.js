@@ -59,29 +59,7 @@ const page = () => {
             {type === 'car' &&
             <FootprintRetire title="car ride" typesName="Car"/>}
             <div>
-        <button className="bg-white font-bold text-grey w-full pt-1" onClick={()=>window.my_modal_2.showModal()}>Schedule retirement</button>
-        <dialog id="my_modal_2" className="modal">
-            <form method="dialog" className="modal-box">
-                <h3 className="font-bold text-lg mb-2">Schedule retirements</h3>
-                <label className='flex items-center gap-4 w-full justify-between'>
-                    <p>Retire</p>
-                    <p><strong>{tokenAmount}</strong></p>
-                    <p>tokens</p>
-                    <p className=''>every</p>
-                    <select className='text-black rounded-full h-7' >
-                            <option disabled value=""></option>
-                            <option key={'monthly'} value={'monthly'}>month</option>
-                            <option key={'weekly'} value={'weekly'}>week</option>
-                    </select>
-                    <button onClick={() => {}} className='px-4 py-1 rounded-full bg-lightgreen text-white h-7'>Schedule</button>
-                </label>
-
-                
-            </form>
-                <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-            </form>
-        </dialog>
+        
     </div>
         </div>
     </div>
