@@ -10,7 +10,8 @@ const company = () => {
   const [companyType, setCompanyType] = useState(null);
   const [companyOwner, setCompanyOwner] = useState(null);
   const [country, setCountry] = useState(null);
-
+  const [price, setPrice] = useState(null);
+  const [carbonEmitted, setCarbonEmitted] = useState(null);
 
   const sendFileToIPFS = async (e) => {
     if (fileImg) {
@@ -59,7 +60,7 @@ const company = () => {
         <div className="flex justify-center bg-darkgreen w-[40%] rounded-lg py-4">
           <div className="flex flex-col ">
             <div className="flex justify-center">
-              <h1 className="text-white font-bold py-4">
+              <h1 className="text-white font-bold py-4 text-lg">
                 Register new company
               </h1>
             </div>
@@ -78,7 +79,15 @@ const company = () => {
             <div className="py-4 flex flex-col">
               <label className=" text-white py-1">Country:</label>
               <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"
-              onChange={(e) => setCompanyCountry(e.target.result)}></input>
+              onChange={(e) => setCountry(e.target.result)}></input>
+            </div>
+            <div className="py-4 flex flex-col">
+              <label className=" text-white py-1">Carbon Credits Emitted:</label>
+              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none" onChange={(e) => setCarbonEmitted(e.target.result)}></input>
+            </div>
+            <div className="py-4 flex flex-col">
+              <label className=" text-white py-1">Price:</label>
+              <input className="w-72 h-8 rounded-lg px-4 focus:outline-none" onChange={(e) => setPrice(e.target.result)}></input>
             </div>
             <div className="py-4 flex flex-col">
               <label className=" text-white py-1">Logo URI:</label>
