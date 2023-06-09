@@ -1,73 +1,73 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 
 import LeaderboardCard from "./LeaderboardCard";
 import SearchBar from "./SearchBar";
 import Table from "./Table";
-//import Token from '../../abis/Token.json';
+import companyAddresses from "../utils/companyAddresses.json";
 import { ethers } from "ethers";
+import Company from "../abis/Company.json";
 
 const Leaderboard = () => {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const companyABI = Company.abi;
+    let fetched = [];
     const getLeaderboard = async () => {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      //const keyboardsContract = new ethers.Contract(contractAddress, contractABI, signer);
-      //let result = await keyboardsContract.balanceOf('0xfD6bC6A51D75Ce69bb8ba7Fa684eb2DeDa0D37e0')
-      //console.log('result ', result.toString())
-  }
-    if (typeof window.ethereum !== 'undefined') {
+      for (let i = 0; i < companyAddresses.companies.length; i++) {
+        const contractAddress = companyAddresses.companies[i];
+        const companyContract = new ethers.Contract(
+          contractAddress,
+          companyABI,
+          signer
+        );
+        let companyName = await companyContract.companyName();
+        let companyType = await companyContract.companyType();
+        let companyTokens = await companyContract.carbonCreditsEmmiteds();
+        let companyStatus = await companyContract.allowance();
+        let URI = await companyContract.logoURI();
+
+        console.log(companyName, contractAddress, companyTokens.toString())
+
+        fetched.push({
+          id: i,
+          company: {
+            name: companyName,
+            logo: URI,
+            type: companyType,
+          },
+          tokens: companyTokens,
+          status: Number(companyStatus) > 0 ? "Active" : "Inactive",
+        });
+      }
+
+      fetched.sort((a, b) => b.tokens - a.tokens);
+
+      setData(fetched);
+    };
+    if (typeof window.ethereum !== "undefined") {
       getLeaderboard();
+      console.log(data);
     }
-  }, [])
-
-
-  const data = [
-    {
-      id: 1,
-      company: {
-        name: 'Gerdau',
-        logo: 'https://media.licdn.com/dms/image/C4D0BAQFOflmqo6o0Zw/company-logo_200_200/0/1657129848248?e=2147483647&v=beta&t=ye07zO-CeE4C1yHlnzZVoRLI-haSpHxwdgOm-zXEUMs',
-        type: 'Steel',
-      },
-      tokens: 100,
-      status: 'Active',
-    },
-    {
-      id: 2,
-      company: {
-        name: 'Company B',
-        logo: 'https://example.com/logo2.png',
-        type: 'Type B',
-      },
-      tokens: 200,
-      status: 'Inactive',
-    },
-    // Add more data objects as needed
-  ];
+  });
 
   const [filteredData, setFilteredData] = useState(data);
 
+  useEffect(() => {
+    setFilteredData(data); // Update the filtered data when the data state changes
+  }, [data]);
 
-  const leaderboardCards = [
-    { company: "Company 1", tokens: 100 },
-    { company: "Company 2", tokens: 200 },
-    { company: "Company 3", tokens: 300 },
-  ];
-
+  const leaderboardCards = data.slice(0, 3);
   return (
     <div className="bg-darkgreen w-full min-h-screen px-10" id="leaderboard">
       <div className="pt-20 text-white w-[40%]">
-        <h1 className="text-6xl font-bold">
-          Leaderboard
-        </h1>
+        <h1 className="text-6xl font-bold">Leaderboard</h1>
         <p className="text-md mt-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          sed facilisis diam. Praesent tincidunt lobortis turpis. In vehicula
-          posuere iaculis. Nunc a metus eu turpis ultrices tincidunt sed sed
-          metus.
+        Welcome to our Carbon Credits Leaderboard! This leaderboard showcases projects that have excelled in generating carbon credits and contributing to the fight against climate change. These projects play a vital role in reducing greenhouse gas emissions and promoting sustainability on a global scale.
         </p>
       </div>
       <div className="flex gap-5 justify-between w-full mt-8">
@@ -76,18 +76,18 @@ const Leaderboard = () => {
             <LeaderboardCard
               key={index}
               place={index + 1}
-              company={card.company}
-              tokens={card.tokens}
+              company={card.company.name}
+              tokens={card.tokens.toString()}
             />
           );
         })}
       </div>
       <div className="py-10">
         <div className="w-full flex items-center justify-between text-white mb-3">
-          <h2 className="text-3xl font-semibold">All users</h2>
-          <SearchBar data={data} setFilteredData={setFilteredData}/>
+          <h2 className="text-3xl font-semibold">All projects</h2>
+          <SearchBar data={data} setFilteredData={setFilteredData} />
         </div>
-        <Table data={filteredData}/>
+        <Table data={filteredData} />
       </div>
     </div>
   );
