@@ -4,7 +4,7 @@ import howWorksPic from 'public/assets/how-works.svg'
 
 const HowItWorks = () => {
     return (
-        <div className='flex flex-row justify-between'>
+        <div className='flex flex-row justify-between' id='how-it-works'>
       <Image
       className='my-[2%] mx-[4%]'
       src={howWorksPic}
