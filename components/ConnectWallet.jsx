@@ -42,6 +42,7 @@ const ConnectWallet = (
           <p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer"><Link href="/dashboard">Dashboard</Link></p>
           <p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer"><Link href="/swap">Swap tokens</Link></p>
           <p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer"><Link href="/offset">Offset your carbon footprint</Link></p>
+          <p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer"><Link href="/company">Register project</Link></p>
         </div>
       )}
     </div>
