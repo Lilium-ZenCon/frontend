@@ -1,8 +1,39 @@
+'use client'
+
 import Graph from '@/components/Graph'
 import NFTCarousel from '@/components/NFTCarousel'
-import React from 'react'
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import OffsetCarbonToken from "../../abis/OffsetCarbonToken.json";
 
 const dashboard = () => {
+
+  const [balance, setBalance] = useState(0);
+  const [history, setHistory] = useState('');
+  const contractAddress = "0xaFc796F03Fb2135579B88E9Ad6C7AE4DA600B199";
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(
+    contractAddress,
+    OffsetCarbonToken.abi,
+    signer
+  );
+
+  const getBalance = async () => {
+    const account = await signer.getAddress();
+    let result = await tokenContract.balanceOf(account);
+    let history = await tokenContract.historyUsersRetires();
+    setBalance(result.toString());
+    setHistory(history);
+    console.log(history);
+  };
+
+  useEffect(() => {
+    if (typeof window.ethereum !== "undefined") {
+      getBalance();
+    }
+  }, [balance]);
+
   return (
     <div className='mx-10 mt-4'>
         <h1 className='text-4xl font-bold mb-2 mt-4'>Dashboard</h1>
@@ -20,7 +51,7 @@ const dashboard = () => {
             <div className='flex flex-col justify-between items-center'>
             <div className='bg-white w-96 h-32'>
                 <h5 className="text-sm font-bold text-grey mt-[6%] ml-[8%]">Total Tokens</h5>
-                <h1 className='font-bold text-darkgreen text-4xl ml-[8%]' >12,000</h1>
+                <h1 className='font-bold text-darkgreen text-4xl ml-[8%]' >{balance}</h1>
 
             </div>
             <div className='bg-white w-96 h-32'>
