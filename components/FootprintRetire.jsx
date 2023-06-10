@@ -3,11 +3,10 @@
 import { useState } from 'react'
 import { flights, cars, publicTransportation } from '../utils/footprintTypes'
 
-const FootprintRetire = ({title, typesName}) => {
+const FootprintRetire = ({title, typesName, balance, tokenAmount, setTokenAmount, retireTokens}) => {
 
     const [distance, setDistance] = useState(0)
     const [selectedType, setSelectedType] = useState('')
-    const [tokens, setTokens] = useState(0)
 
 
     let types = typesName === 'Car' ? cars : typesName === 'Flight' ? flights : typesName === 'Public transit' ? publicTransportation : null
@@ -32,21 +31,17 @@ const FootprintRetire = ({title, typesName}) => {
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-            setTokens(Number(result.carbonEquivalent) / 1000)
+            setTokenAmount(Number(result.carbonEquivalent) / 100)
         } catch (error) {
             console.error(error);
         }
     };
 
-
-    const retireTokens = () => {
-    }
-
     return (
         <div>
     <div className=' mt-4 flex flex-col items-center justify-center text-white'>
             <h3 className='font-bold text-white text-3xl pt-3'>Offset a {title}</h3>
-            <p className='text-sm mb-5'>You have 0 carbon tokens</p>
+            <p className='text-sm mb-5'>You have {balance} carbon tokens</p>
             <div className='flex items-end justify-between mb-5 w-[80%] gap-5'>
                 <label className='w-1/2'>
                     <p className='text-sm'>Km traveled</p>
@@ -65,7 +60,7 @@ const FootprintRetire = ({title, typesName}) => {
                 </label>
                 <button onClick={estimateEmissions} className='px-4 py-1 rounded-full bg-lightgreen text-white h-7'>Estimate</button>
             </div>
-            <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{tokens.toFixed(10)}</p>
+            <p className='w-[80%] h-28 rounded-lg text-black font-bold px-2 text-5xl bg-white flex items-center' >{tokenAmount.toFixed(10)}</p>
             <button className='bg-dark_grey text-white font-semibold py-5 px-2 rounded-lg cursor-pointer mt-6 w-full' onClick={retireTokens}>Retire</button>
         </div>
         </div>

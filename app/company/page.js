@@ -77,7 +77,7 @@ const company = () => {
         address = companyAddress;
       })
      
-    toast.success("Project registered successfully on " + address + "!", {
+    toast.success("Project registered successfully!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,

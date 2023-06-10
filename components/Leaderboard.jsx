@@ -31,8 +31,6 @@ const Leaderboard = () => {
         let companyStatus = await companyContract.allowance();
         let URI = await companyContract.logoURI();
 
-        console.log(companyName, contractAddress, companyTokens.toString())
-
         fetched.push({
           id: i,
           company: {
