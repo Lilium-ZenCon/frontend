@@ -2,21 +2,15 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 const Company = ({ company, showModal }) => {
-    const [borderColor, setBorderColor] = useState('border-red-500');
-
-    const handleCardColor = () => {
-        const newBorderColor = company.issuesDetected
-            ? 'border-red-500'
-            : 'border-green-500';
-        setBorderColor(newBorderColor);
-    };
+    const borderColor = company.issuesDetected
+        ? 'border-red-500'
+        : 'border-green-500';
 
     return (
         <button
-            className={`bg-white rounded-lg shadow-xl w-[184px] h-52 text-darkgreen border-4 ${borderColor} hover:bg-slate-200 transition duration-300 ease-in-out`}
+            className={`bg-white rounded-lg shadow-xl w-[184px] h-52 text-darkgreen border-4 ${borderColor} hover:bg-slate-200 transition duration-300 ease-in-out mt-2`}
             onClick={() => {
                 showModal(company);
-                handleCardColor();
             }}
         >
             <div className="flex justify-center">

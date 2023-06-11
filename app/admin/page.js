@@ -1,45 +1,84 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CiCirclePlus } from 'react-icons/ci';
 import { CiViewList } from 'react-icons/ci';
 import Companies from '@/components/Companies';
 import NewCompanies from '@/components/NewCompany';
+import companyAddresses from '../../utils/companyAddresses.json';
+import { ethers } from 'ethers';
+import Company from '../../abis/Company.json';
 
-const admin = () => {
+const Admin = () => {
     const [type, setType] = useState('companies');
     const [selectedCompany, setSelectedCompany] = useState(null);
-    const [companies, setCompanies] = useState([
-        {
-            name: 'Alberta Carbon Trunk Line',
-            emittedTokens: 14000,
-            status: 'Active',
-            image: '/assets/nft.jpg',
-            type: 'Oil and Gas',
-            owner: '0x123456789',
-            issuesDetected: true,
-            country: 'Canada',
-            tokenPrice: 0.0001,
-            carbonCreditsEmitted: 100000,
-            currentAllowance: 100000
-        }
-    ]);
+    const [companies, setCompanies] = useState([]);
+    const [loadingCompanies, setLoadingCompanies] = useState(true);
 
-    /*
-	Company template:
-	{
-            name: 'Alberta Carbon Trunk Line',
-            emittedTokens: 14000,
-            status: 'Active',
-            image: '/assets/nft.jpg',
-            type: 'Oil and Gas',
-            owner: '0x123456789',
-            issuesDetected: true,
-            country: 'Canada',
-            tokenPrice: 0.0001,
-            carbonCreditsEmitted: 100000,
-            currentAllowance: 100000
+    useEffect(() => {
+        const companyABI = Company.abi;
+        let companies = [];
+
+        const getCompanies = async () => {
+            try {
+                const provider = new ethers.providers.Web3Provider(
+                    window.ethereum
+                );
+                const signer = provider.getSigner();
+
+                setLoadingCompanies(true); // Set loading state when fetching companies
+
+                for (let i = 0; i < companyAddresses.companies.length; i++) {
+                    const contractAddress = companyAddresses.companies[i];
+                    const companyContract = new ethers.Contract(
+                        contractAddress,
+                        companyABI,
+                        signer
+                    );
+
+                    let companyName = await companyContract.companyName();
+                    let companyType = await companyContract.companyType();
+                    let companyEmittedTokens =
+                        await companyContract.carbonCreditsEmmiteds();
+                    let companyAllowance = await companyContract.allowance();
+                    let URI = await companyContract.logoURI();
+                    let companyOwner = await companyContract.companyOwner();
+                    let companyCountry = await companyContract.country();
+                    let tokenPrice = await companyContract.tokenPrice();
+
+                    companies.push({
+                        name: companyName,
+                        emittedTokens: Number(companyEmittedTokens),
+                        status:
+                            Number(companyAllowance) > 0
+                                ? 'Active'
+                                : 'Inactive',
+                        image: URI,
+                        type: companyType,
+                        currentAllowance: Number(companyAllowance),
+                        owner: companyOwner,
+                        issuesDetected: false,
+                        country: companyCountry,
+                        tokenPrice: tokenPrice
+                    });
+                }
+
+                companies.sort((a, b) => b.emittedTokens - a.emittedTokens);
+
+                setCompanies(companies);
+                setLoadingCompanies(false); // Set loading state to false after fetching companies
+            } catch (error) {
+                console.error(
+                    'An error occurred while fetching companies.',
+                    error
+                );
+                setLoadingCompanies(false); // Set loading state to false in case of error
+            }
+        };
+
+        if (typeof window.ethereum !== 'undefined') {
+            getCompanies();
         }
-	*/
+    }, []);
 
     const showModal = (company) => {
         setSelectedCompany(company);
@@ -53,7 +92,7 @@ const admin = () => {
 
     return (
         <div className="flex justify-between mx-8 items-center">
-            <div className="flex items-center flex-col w-1/5  h-full">
+            <div className="flex items-center flex-col w-1/5 h-full">
                 <button
                     className="w-full bg-lightgreen h-32 rounded-lg shadow-xl my-4 flex flex-col justify-center items-center hover:bg-darkgreen transition ease-in-out duration-1"
                     onClick={() => setType('companies')}
@@ -72,16 +111,23 @@ const admin = () => {
                 </button>
             </div>
             {type === 'companies' && (
-                <div className="bg-darkgreen rounded-md w-[75%] overflow-auto scroll-smooth	 h-[430px] text-white px-8 py-8">
+                <div className="bg-darkgreen rounded-md w-[75%] overflow-auto scroll-smooth h-[530px] text-white px-8 py-8">
                     <h2 className="font-bold mx-2 text-lg my-1">
                         Registered companies
                     </h2>
-                    <Companies showModal={showModal} companies={companies} />
+                    {loadingCompanies ? (
+                        <p>Loading companies...</p> // Loading indicator within the container
+                    ) : (
+                        <Companies
+                            showModal={showModal}
+                            companies={companies}
+                        />
+                    )}
                 </div>
             )}
 
             {type === 'newCompany' && (
-                <div className="bg-darkgreen rounded-md w-[75%] overflow-auto scroll-smooth	 h-[430px] text-white px-8 py-4">
+                <div className="bg-darkgreen rounded-md w-[75%] overflow-auto scroll-smooth h-[430px] text-white px-8 py-4">
                     <NewCompanies />
                 </div>
             )}
@@ -142,4 +188,4 @@ const admin = () => {
     );
 };
 
-export default admin;
+export default Admin;
