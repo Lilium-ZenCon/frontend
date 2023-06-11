@@ -60,7 +60,16 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 			)}
 			{isDropdownOpenAdmin  &&  (
 				<div className="absolute top-11 right-0 bg-white rounded-lg shadow-lg text-right z-10">
-					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer mx-16" onClick={() => handleLinkClick('/admin')}>
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/dashboard')}>
+						Dashboard
+					</p>
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/swap')}>
+						Swap tokens
+					</p>
+					<p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/offset')}>
+						Offset your carbon footprint
+					</p>
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/admin')}>
 						Admin area
 					</p>
 					
@@ -68,7 +77,16 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 			)}
 			{isDropdownOpenCompany  &&  (
 				<div className="absolute top-11 right-0 bg-white rounded-lg shadow-lg text-right z-10">
-					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer mx-16" onClick={() => handleLinkClick('/company')}>
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/dashboard')}>
+						Dashboard
+					</p>
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/swap')}>
+						Swap tokens
+					</p>
+					<p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/offset')}>
+						Offset your carbon footprint
+					</p>
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer " onClick={() => handleLinkClick('/company')}>
 						Withdraw
 					</p>
 					
