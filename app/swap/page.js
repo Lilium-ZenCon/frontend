@@ -75,10 +75,7 @@ const swap = () => {
 	return (
 		<div>
 			<div className="">
-				<div
-					className="bg-darkgreen w-5/12
-           rounded-md ml-40 pt-1"
-				>
+				<div className="bg-darkgreen w-5/12 rounded-md ml-40 pt-1">
 					<h1 className="font-bold text-white text-lg	m-6 pl-6">Swap</h1>
 					<div className=" mt-4 flex flex-col  items-center justify-center">
 						<div className="bg-white w-[90%] h-24 rounded-md flex items-center justify-between">
