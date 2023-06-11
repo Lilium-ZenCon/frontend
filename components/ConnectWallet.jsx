@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 
-const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, setWalletIsConnected, setIsDropdownOpen, isDropdownOpen, setIsDropdownOpenAdmin, isDropdownOpenAdmin }) => {
+const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, setWalletIsConnected, setIsDropdownOpen, isDropdownOpen, setIsDropdownOpenAdmin, isDropdownOpenAdmin, setIsDropdownOpenCompany, isDropdownOpenCompany }) => {
 	const adminWallets = ['0xDa7fc57E480177B87f63f199Db79CF9c5D883280']
+	const companyWallets = ['0xDa7fc57E480177B87f63f199Db79CF9c5D883289']
 
 	const connect = async () => {
 		const { ethereum } = window;
@@ -16,6 +17,9 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 				for (var i = 0; i < adminWallets; i++){
 					if (adminWallets[i].toLowerCase() == walletAddress) {
 						setIsDropdownOpenAdmin((prevState) => !prevState);
+						break
+					} if (companyWallets[i].toLowerCase() == walletAddress){
+						setIsDropdownOpenCompany((prevState) => !prevState);
 						break
 					} else {
 						setIsDropdownOpen((prevState) => !prevState);
@@ -56,8 +60,16 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 			)}
 			{isDropdownOpenAdmin  &&  (
 				<div className="absolute top-11 right-0 bg-white rounded-lg shadow-lg text-right z-10">
-					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/admin')}>
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer mx-16" onClick={() => handleLinkClick('/admin')}>
 						Admin area
+					</p>
+					
+				</div>
+			)}
+			{isDropdownOpenCompany  &&  (
+				<div className="absolute top-11 right-0 bg-white rounded-lg shadow-lg text-right z-10">
+					<p className="text-sm font-bold text-grey mb-2 hover:bg-hover_grey p-2 rounded-md cursor-pointer mx-16" onClick={() => handleLinkClick('/company')}>
+						Withdraw
 					</p>
 					
 				</div>

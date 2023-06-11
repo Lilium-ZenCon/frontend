@@ -12,6 +12,7 @@ const NavBar = () => {
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const [isDropdownOpenAdmin, setIsDropdownOpenAdmin] = useState(false);
+	const [isDropdownOpenCompany, setIsDropdownOpenCompany] = useState(false); 
 
 	return (
 		<div className="flex justify-between font-semibold text-grey items-center my-6 mx-10 font-montserrat">
@@ -38,6 +39,8 @@ const NavBar = () => {
 				isDropdownOpen={isDropdownOpen}
 				setIsDropdownOpenAdmin = {setIsDropdownOpenAdmin}
 				isDropdownOpenAdmin = {isDropdownOpenAdmin}
+				setIsDropdownOpenCompany = {setIsDropdownOpenCompany}
+				isDropdownOpenCompany = {isDropdownOpenCompany}
 			/>
 		</div>
 	);
