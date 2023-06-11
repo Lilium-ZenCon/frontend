@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, setWalletIsConnected, setIsDropdownOpen, isDropdownOpen, setIsDropdownOpenAdmin, isDropdownOpenAdmin }) => {
-	const adminWallets = ['0xDa7fc57E480177B87f63f199Db79CF9c5D883289']
+	const adminWallets = ['0xDa7fc57E480177B87f63f199Db79CF9c5D883280']
 
 	const connect = async () => {
 		const { ethereum } = window;
