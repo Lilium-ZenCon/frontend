@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
+
 const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, setWalletIsConnected, setIsDropdownOpen, isDropdownOpen }) => {
 	const connect = async () => {
 		const { ethereum } = window;
-		if (!ethereum) {
-			alert('For a better experience, please use MetaMask!');
-		} else {
+		if (ethereum) {
 			if (!walletIsConnected) {
 				const accounts = await ethereum.request({
 					method: 'eth_requestAccounts',
@@ -19,6 +19,10 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 	const handleLinkClick = (path) => {
 		window.location.href = path;
 	};
+
+	useEffect(() => {
+		connect();
+	}, []);
 
 	return (
 		<div className="relative">

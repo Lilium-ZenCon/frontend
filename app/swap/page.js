@@ -5,16 +5,16 @@ import companyAddresses from '../../utils/companyAddresses.json';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 
-const provider = new ethers.providers.Web3Provider(ethereum);
-const signer = provider.getSigner();
-const companyABI = Company.abi;
-
 const swap = () => {
 	const [oct, setOct] = useState(0);
 	const [matic, setMatic] = useState(0);
 	const [chosenCompany, setChosenCompany] = useState('');
 
 	const [data, setData] = useState([]);
+
+	var provider = null;
+	var signer = null;
+	const companyABI = Company.abi;
 
 	const swapTokens = async () => {
 		const contractAddress = chosenCompany.address;
@@ -65,6 +65,9 @@ const swap = () => {
 			setData(fetched);
 		};
 		if (typeof window.ethereum !== 'undefined') {
+			provider = new ethers.providers.Web3Provider(ethereum);
+			signer = provider.getSigner();
+
 			getAddresses();
 		}
 	});
