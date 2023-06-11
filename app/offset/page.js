@@ -9,7 +9,7 @@ import { FaBus } from 'react-icons/fa';
 import FootprintRetire from '@/components/FootprintRetire';
 import WalletContext from '@/context/WalletContext';
 import { ethers } from 'ethers';
-import OffsetCarbonToken from '../../abis/OffsetCarbonToken.json';
+import OffsetCarbonToken from '../../abis/OffSetCarbonToken.json';
 import { toast } from 'react-toastify';
 
 const page = () => {

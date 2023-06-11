@@ -4,7 +4,7 @@ import Graph from '@/components/Graph';
 import NFTCarousel from '@/components/NFTCarousel';
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
-import OffsetCarbonToken from '../../abis/OffsetCarbonToken.json';
+import OffsetCarbonToken from '../../abis/OffSetCarbonToken.json';
 
 const dashboard = () => {
 	const [balance, setBalance] = useState(0);
