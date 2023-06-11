@@ -1,11 +1,23 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-const Company = (showModal, company) => {
+const Company = ({ company, showModal }) => {
+    const [borderColor, setBorderColor] = useState('border-red-500');
+
+    const handleCardColor = () => {
+        const newBorderColor = company.issuesDetected
+            ? 'border-red-500'
+            : 'border-green-500';
+        setBorderColor(newBorderColor);
+    };
+
     return (
         <button
-            className="bg-white rounded-lg shadow-xl w-[184px] h-52 text-darkgreen border-4 border-red-500 hover:bg-slate-200 transition duration-300 ease-in-out"
-            onClick={() => window.company_modal.showModal(company)}
+            className={`bg-white rounded-lg shadow-xl w-[184px] h-52 text-darkgreen border-4 ${borderColor} hover:bg-slate-200 transition duration-300 ease-in-out`}
+            onClick={() => {
+                showModal(company);
+                handleCardColor();
+            }}
         >
             <div className="flex justify-center">
                 <Image
@@ -21,7 +33,7 @@ const Company = (showModal, company) => {
             </div>
             <div className="my-2  mx-2">
                 <p className="font-bold text-sm">Emitted tokens</p>
-                <p className="text-xs">{company.tokens}</p>
+                <p className="text-xs">{company.emittedTokens}</p>
             </div>
             <div className="my-2 mx-2">
                 <p className="font-bold text-sm">Status</p>
@@ -31,20 +43,11 @@ const Company = (showModal, company) => {
     );
 };
 
-const Companies = () => {
-    const [companies, setCompanies] = useState([
-        {
-            name: 'Alberta Carbon Trunk Line',
-            tokens: 14000,
-            status: 'Active',
-            image: 'assets/nft.jpg'
-        }
-    ]);
-
+const Companies = ({ showModal, companies }) => {
     return (
         <div className="flex flex-wrap justify-around py-4">
             {companies.map((company, index) => (
-                <Company key={index} company={company} />
+                <Company key={index} company={company} showModal={showModal} />
             ))}
         </div>
     );

@@ -8,6 +8,21 @@ import NewCompanies from '@/components/NewCompany';
 const admin = () => {
     const [type, setType] = useState('companies');
     const [selectedCompany, setSelectedCompany] = useState(null);
+    const [companies, setCompanies] = useState([
+        {
+            name: 'Alberta Carbon Trunk Line',
+            emittedTokens: 14000,
+            status: 'Active',
+            image: '/assets/nft.jpg',
+            type: 'Oil and Gas',
+            owner: '0x123456789',
+            issuesDetected: true,
+            country: 'Canada',
+            tokenPrice: 0.0001,
+            carbonCreditsEmitted: 100000,
+            currentAllowance: 100000
+        }
+    ]);
 
     const showModal = (company) => {
         setSelectedCompany(company);
@@ -44,7 +59,7 @@ const admin = () => {
                     <h2 className="font-bold mx-2 text-lg my-1">
                         Registered companies
                     </h2>
-                    <Companies showModal={showModal} />
+                    <Companies showModal={showModal} companies={companies} />
                 </div>
             )}
 
@@ -92,6 +107,10 @@ const admin = () => {
                             <p className="mx-1">
                                 <b>Carbon Credits Emitted: </b>{' '}
                                 {selectedCompany.carbonCreditsEmitted}
+                            </p>
+                            <p className="mx-1">
+                                <b> Current Allowance: </b>{' '}
+                                {selectedCompany.currentAllowance}
                             </p>
                         </div>
                         <div className="flex justify-center">
