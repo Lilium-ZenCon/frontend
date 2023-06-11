@@ -11,6 +11,7 @@ const NavBar = () => {
 	const { walletAddress, setWalletAddress, walletIsConnected, setWalletIsConnected } = useContext(WalletContext);
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const [isDropdownOpenAdmin, setIsDropdownOpenAdmin] = useState(false);
 
 	return (
 		<div className="flex justify-between font-semibold text-grey items-center my-6 mx-10 font-montserrat">
@@ -35,6 +36,8 @@ const NavBar = () => {
 				setWalletIsConnected={setWalletIsConnected}
 				setIsDropdownOpen={setIsDropdownOpen}
 				isDropdownOpen={isDropdownOpen}
+				setIsDropdownOpenAdmin = {setIsDropdownOpenAdmin}
+				isDropdownOpenAdmin = {isDropdownOpenAdmin}
 			/>
 		</div>
 	);
