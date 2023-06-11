@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import logo from 'public/assets/swap-logo.svg'
 import Company from '../../abis/Company.json';
 import companyAddresses from '../../utils/companyAddresses.json';
 import { ethers } from 'ethers';
@@ -118,6 +120,13 @@ const swap = () => {
 						</button>
 					</div>
 				</div>
+				<Image
+                className='bottom-0 right-0  -z-10 absolute'
+                src={logo}
+                alt="logo"
+                width="400"
+                height="400"
+                />
 			</div>
 		</div>
 	);
