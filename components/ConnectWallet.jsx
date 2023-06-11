@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, setWalletIsConnected, setIsDropdownOpen, isDropdownOpen, setIsDropdownOpenAdmin, isDropdownOpenAdmin }) => {
 	const adminWallets = ['0xDa7fc57E480177B87f63f199Db79CF9c5D883289']
+
 	const connect = async () => {
 		const { ethereum } = window;
 		if (ethereum) {
@@ -12,10 +13,14 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 				setWalletAddress(accounts[0]);
 				setWalletIsConnected(true);
 			} else {
-				if (adminWallets.includes(walletAddress)) {
-					setIsDropdownOpenAdmin((prevState) => !prevState);
-				} else {
-					setIsDropdownOpen((prevState) => !prevState);
+				for (var i = 0; i < adminWallets; i++){
+					if (adminWallets[i].toLowerCase() == walletAddress) {
+						setIsDropdownOpenAdmin((prevState) => !prevState);
+						break
+					} else {
+						setIsDropdownOpen((prevState) => !prevState);
+						break
+					}
 				}
 
 			}
