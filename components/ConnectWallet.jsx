@@ -27,7 +27,7 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 	return (
 		<div className="relative">
 			<button type="button" className="hover:bg-hover_grey px-4 py-2 rounded-full border-[1px] border-grey transition duration-300 ease-in-out" onClick={connect}>
-				{walletIsConnected ? walletAddress : 'Connect wallet'}
+				{walletIsConnected ? 'Connected wallet: ' + walletAddress.substring(0, 6) + '...' + walletAddress.substring(38, 42) : 'Connect wallet'}
 			</button>
 			{isDropdownOpen && (
 				<div className="absolute top-11 right-0 bg-white rounded-lg shadow-lg text-right">
