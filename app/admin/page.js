@@ -24,6 +24,23 @@ const admin = () => {
         }
     ]);
 
+    /*
+	Company template:
+	{
+            name: 'Alberta Carbon Trunk Line',
+            emittedTokens: 14000,
+            status: 'Active',
+            image: '/assets/nft.jpg',
+            type: 'Oil and Gas',
+            owner: '0x123456789',
+            issuesDetected: true,
+            country: 'Canada',
+            tokenPrice: 0.0001,
+            carbonCreditsEmitted: 100000,
+            currentAllowance: 100000
+        }
+	*/
+
     const showModal = (company) => {
         setSelectedCompany(company);
         window.company_modal.showModal();
