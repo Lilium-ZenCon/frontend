@@ -100,13 +100,13 @@ const NewCompany = () => {
                 <div className='flex flex-wrap justify-around'>
                     <div className='flex flex-col'>
                         <label className=" text-white py-1" onChange={(e) => setCompanyName(e.target.value)} value={companyName}>Company Name:</label>
-                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none" ></input>
+                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" ></input>
 
                         <label className=" text-white py-1">Company Type:</label>
-                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none" onChange={(e) => setCompanyType(e.target.value)} value={companyType}></input>
+                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" onChange={(e) => setCompanyType(e.target.value)} value={companyType}></input>
 
                         <label className=" text-white py-1">Company Owner:</label>
-                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"  onChange={(e) => setCompanyOwner(e.target.value)} value={companyOwner}></input>
+                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"  onChange={(e) => setCompanyOwner(e.target.value)} value={companyOwner}></input>
 
                         <label className=" text-white py-1">Logo:</label>
                         <input
@@ -118,13 +118,13 @@ const NewCompany = () => {
                     </div>
                     <div className='flex flex-col'>
                         <label className=" text-white py-1">Country:</label>
-                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none"  onChange={(e) => setCountry(e.target.value)} value={country}></input>
+                        <input className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"  onChange={(e) => setCountry(e.target.value)} value={country}></input>
 
                         <label className=" text-white py-1">Carbon Credits Emitted:</label>
-                        <input type="number" className="w-72 h-8 rounded-lg px-4 focus:outline-none"  onChange={(e) => setCarbonEmitted(e.target.value)} value={carbonEmitted}></input>
+                        <input type="number" className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"  onChange={(e) => setCarbonEmitted(e.target.value)} value={carbonEmitted}></input>
 
                         <label className=" text-white py-1">Price:</label>
-                        <input type="number" className="w-72 h-8 rounded-lg px-4 focus:outline-none" onChange={(e) => setPrice(e.target.value)} value={price}></input>
+                        <input type="number" className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" onChange={(e) => setPrice(e.target.value)} value={price}></input>
 
                     </div>
                    
