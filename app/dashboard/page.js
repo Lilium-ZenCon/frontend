@@ -10,6 +10,7 @@ const dashboard = () => {
 
   const [balance, setBalance] = useState(0);
   const [history, setHistory] = useState('');
+  const [totalOffset, setTotalOffset] = useState(0);
   const contractAddress = "0xaFc796F03Fb2135579B88E9Ad6C7AE4DA600B199";
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
@@ -23,9 +24,17 @@ const dashboard = () => {
     const account = await signer.getAddress();
     let result = await tokenContract.balanceOf(account);
     let history = await tokenContract.historyUsersRetires();
+    let formattedHistory = []
+    history.map((item) => {
+      let quantities = item[1].toString().split(',').map((item) => parseInt(item)).reduce((a, b) => a + b, 0)
+      let date = item[0]
+      formattedHistory.push({quantities, date})
+    })
+    let totalOffset = formattedHistory.map((item) => item.quantities).reduce((a, b) => a + b, 0)
+    console.log(formattedHistory)
     setBalance(result.toString());
     setHistory(history);
-    console.log(history);
+    setTotalOffset(totalOffset)
   };
 
   useEffect(() => {
@@ -56,7 +65,7 @@ const dashboard = () => {
             </div>
             <div className='bg-white w-96 h-32'>
                 <h5 className="text-sm font-bold text-grey mt-[6%] ml-[8%]">Total Offset</h5>
-                <h1 className='font-bold text-darkgreen text-4xl ml-[8%]' >12,000</h1>
+                <h1 className='font-bold text-darkgreen text-4xl ml-[8%]' >{totalOffset}</h1>
 
             </div>
             

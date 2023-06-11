@@ -33,9 +33,9 @@ const page = () => {
 
   const retireTokens = async () => {
     let date = new Date();
-    date = `${date.getMonth()}/${date.getDate()}/${date.getYear()}`;
+    date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
     console.log(date)
-    let result = await tokenContract.retire(tokenAmount.floor(), date);
+    let result = await tokenContract.retire(tokenAmount, date);
     console.log(result);
     toast.success("Tokens retired!");
     getBalance();
