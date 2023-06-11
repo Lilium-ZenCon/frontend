@@ -4,7 +4,7 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 	const connect = async () => {
 		const { ethereum } = window;
 		if (!ethereum) {
-			alert('Install Metamask');
+			alert('For better experience, please use MetaMask!');
 		} else {
 			if (!walletIsConnected) {
 				const accounts = await ethereum.request({
