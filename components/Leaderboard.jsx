@@ -13,11 +13,13 @@ const Leaderboard = () => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		const provider = new ethers.providers.Web3Provider(ethereum);
-		const signer = provider.getSigner();
 		const companyABI = Company.abi;
 		let fetched = [];
+
 		const getLeaderboard = async () => {
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
+			const signer = provider.getSigner();
+
 			for (let i = 0; i < companyAddresses.companies.length; i++) {
 				const contractAddress = companyAddresses.companies[i];
 				const companyContract = new ethers.Contract(contractAddress, companyABI, signer);
@@ -43,6 +45,7 @@ const Leaderboard = () => {
 
 			setData(fetched);
 		};
+
 		if (typeof window.ethereum !== 'undefined') {
 			getLeaderboard();
 			console.log(data);
