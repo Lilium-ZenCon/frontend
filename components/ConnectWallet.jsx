@@ -51,9 +51,7 @@ const ConnectWallet = ({ walletAddress, setWalletAddress, walletIsConnected, set
 					<p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/offset')}>
 						Offset your carbon footprint
 					</p>
-					<p className="text-sm font-bold text-grey hover:bg-hover_grey p-2 rounded-md cursor-pointer" onClick={() => handleLinkClick('/company')}>
-						Register project
-					</p>
+					
 				</div>
 			)}
 			{isDropdownOpenAdmin  &&  (
