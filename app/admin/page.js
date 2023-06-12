@@ -10,7 +10,7 @@ import Company from '../../abis/Company.json';
 import { InputFacet__factory, InputFacet } from '@cartesi/rollups';
 import axios from 'axios';
 
-const CARTESI_MACHINE_URL = 'http://localhost:4000/graphql';
+const CARTESI_MACHINE_URL = 'https://a191-2804-14c-55-2dd8-c0af-8c03-8760-ce97.ngrok-free.app/graphql';
 const CARTESI_MACHINE_ADDRESS = '0x6c3951eb5001863987944923a6bbe31c2b47ee45';
 const GET_NOTICES = `
     query GetNotices($cursor: String) {

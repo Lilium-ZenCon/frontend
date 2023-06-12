@@ -28,7 +28,7 @@ const NewCompany = () => {
 					data: formData,
 					headers: {
 						pinata_api_key: `30d7a19afe755717bffc`,
-						pinata_secret_api_key: `ea8d978a134be01628e7e0e6b2ae33aa97e6a1972e8074c26ef1e2709751c22e`,
+						pinata_secret_api_key: 'ea8d978a134be01628e7e0e6b2ae33aa97e6a1972e8074c26ef1e2709751c22e',
 						'Content-Type': 'multipart/form-data',
 					},
 				});
