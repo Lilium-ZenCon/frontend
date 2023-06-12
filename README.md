@@ -19,19 +19,18 @@ The GreenTrace frontend is built using modern web technologies to deliver a seam
 **Blockchain Interaction:** GreenTrace utilizes Ether.js, a JavaScript library for interacting with the Ethereum blockchain. With Ether.js, we can seamlessly connect the frontend to the blockchain network, enabling functionalities such as buying and retiring carbon credit tokens securely.
 
 ## Screenshots
+![Design sem nome (1)](https://github.com/CarbonTracker/frontend/assets/99221221/104e2451-9b1b-4d44-94e8-f24809e233b3)
 
-[Placeholder for screenshot 1]
 
-[Placeholder for screenshot 2]
 
 ## Getting Started
 
 To set up the GreenTrace frontend locally, follow these steps:
 
-Clone this repository: git clone <repository-url>
-Install the dependencies: npm install
-Start the development server: npm run dev
-For detailed instructions, refer to the README.md file in this repository.
+- Clone this repository: git clone https://github.com/CarbonTracker/frontend.git
+- Install the dependencies: `npm install`
+- Start the development server: `npm run dev`
+- For detailed instructions, refer to the README.md file in this repository.
 
 ## Contributing
 
