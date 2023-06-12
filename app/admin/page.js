@@ -7,6 +7,87 @@ import NewCompanies from '@/components/NewCompany';
 import companyAddresses from '../../utils/companyAddresses.json';
 import { ethers } from 'ethers';
 import Company from '../../abis/Company.json';
+import { InputFacet__factory, InputFacet } from '@cartesi/rollups';
+import axios from 'axios';
+
+const CARTESI_MACHINE_URL = 'http://localhost:4000/graphql';
+const CARTESI_MACHINE_ADDRESS = '0x6c3951eb5001863987944923a6bbe31c2b47ee45';
+const GET_NOTICES = `
+    query GetNotices($cursor: String) {
+        notices(first: 10, after: $cursor) {
+            totalCount
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+            nodes {
+                id
+                payload
+                index
+                input {
+                    index
+                    epoch {
+                        index
+                    }
+                }
+            }
+        }
+    }
+`;
+
+class GraphQL {
+    /*
+	Example notice:
+	{
+		"type":"verify",
+		"data":{
+			"prediction_result":{
+				"air_quality":59.09,
+				"temperature":62.55
+			}
+		},
+		"input":{
+			"contract_address":"0x4C39e6763cEeE8B98d85cd88441ede99378766Ce",
+			"target_address":"0x72ac37F2B8685300a6B3781669a487eBb94a5CCd",
+			"data":{
+				"temperature":6,
+				"humidity":80
+			}
+		},
+		"action":"revoke"
+	}
+	*/
+    static async takeNotices() {
+        const endpoint = CARTESI_MACHINE_URL;
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        const requestBody = {
+            query: GET_NOTICES
+        };
+
+        try {
+            const response = await axios.post(endpoint, requestBody, {
+                headers
+            });
+
+            const data = response.data.data.notices.nodes.map((notice) => {
+                const payload = ethers.utils
+                    .toUtf8String(notice.payload)
+                    .replace(/'/g, '"');
+                return JSON.parse(payload);
+            });
+
+            return data;
+        } catch (error) {
+            console.log('Error:', error);
+
+            return [];
+        }
+    }
+}
 
 const Admin = () => {
     const [type, setType] = useState('companies');
@@ -19,6 +100,7 @@ const Admin = () => {
         let companies = [];
 
         const getCompanies = async () => {
+            const notices = await GraphQL.takeNotices();
             try {
                 const provider = new ethers.providers.Web3Provider(
                     window.ethereum
@@ -44,21 +126,37 @@ const Admin = () => {
                     let companyOwner = await companyContract.companyOwner();
                     let companyCountry = await companyContract.country();
                     let tokenPrice = await companyContract.tokenPrice();
+                    let issuesDetected = false;
+
+                    if (notices.length > 0) {
+                        for (let j = 0; j < notices.length; j++) {
+                            if (
+                                notices[
+                                    j
+                                ].input.target_address.toLowerCase() ===
+                                    contractAddress.toLowerCase() &&
+                                notices[j].action === 'revoke'
+                            ) {
+                                issuesDetected = true;
+                            }
+                        }
+                    }
 
                     companies.push({
-                        name: companyName,
+                        contractAddress: String(contractAddress),
+                        name: String(companyName),
                         emittedTokens: Number(companyEmittedTokens),
                         status:
                             Number(companyAllowance) > 0
                                 ? 'Active'
                                 : 'Inactive',
                         image: URI,
-                        type: companyType,
+                        type: String(companyType),
                         currentAllowance: Number(companyAllowance),
-                        owner: companyOwner,
-                        issuesDetected: false,
-                        country: companyCountry,
-                        tokenPrice: tokenPrice
+                        owner: String(companyOwner),
+                        issuesDetected: issuesDetected,
+                        country: String(companyCountry),
+                        tokenPrice: Number(tokenPrice)
                     });
                 }
 
@@ -146,6 +244,10 @@ const Admin = () => {
                             <b>Company: </b>
                             {selectedCompany.name}
                         </h3>
+                        <h4 className="text-lg">
+                            <b>Contract Address: </b>
+                            {selectedCompany.contractAddress}
+                        </h4>
                         <div className="flex flex-col my-4">
                             <p className="mx-1">
                                 <b>Company Type:</b> {selectedCompany.type}
