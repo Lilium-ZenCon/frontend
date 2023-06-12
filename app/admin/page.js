@@ -10,7 +10,8 @@ import Company from '../../abis/Company.json';
 import { InputFacet__factory, InputFacet } from '@cartesi/rollups';
 import axios from 'axios';
 
-const CARTESI_MACHINE_URL = 'https://a191-2804-14c-55-2dd8-c0af-8c03-8760-ce97.ngrok-free.app/graphql';
+const CARTESI_MACHINE_URL =
+    'https://a191-2804-14c-55-2dd8-c0af-8c03-8760-ce97.ngrok-free.app/graphql';
 const CARTESI_MACHINE_ADDRESS = '0x6c3951eb5001863987944923a6bbe31c2b47ee45';
 const GET_NOTICES = `
     query GetNotices($cursor: String) {
@@ -34,6 +35,16 @@ const GET_NOTICES = `
         }
     }
 `;
+
+/*
+example output
+{
+"temperature": "25.80",
+"humidity": "60.00"
+}
+*/
+const BACKEND_LATEST_DATA_URL =
+    'http://ec2-34-219-164-115.us-west-2.compute.amazonaws.com:3003/latest-data';
 
 class GraphQL {
     /*
@@ -94,6 +105,31 @@ const Admin = () => {
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [companies, setCompanies] = useState([]);
     const [loadingCompanies, setLoadingCompanies] = useState(true);
+    const [latestData, setLatestData] = useState({
+        temperature: 0,
+        humidity: 0
+    });
+
+    useEffect(() => {
+        const getLatestData = async () => {
+            try {
+                const response = await axios.get(BACKEND_LATEST_DATA_URL, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                });
+                const data = response.data;
+                console.log(data);
+                setLatestData(data);
+            } catch (error) {
+                return null;
+            }
+        };
+
+        const interval = setInterval(getLatestData, 2000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const companyABI = Company.abi;
@@ -209,10 +245,24 @@ const Admin = () => {
                 </button>
             </div>
             {type === 'companies' && (
-                <div className="bg-darkgreen rounded-md w-[75%] overflow-auto scroll-smooth h-[530px] text-white px-8 py-8">
+                <div className="bg-darkgreen rounded-md w-[75%] overflow-auto scroll-smooth h-[640px] text-white px-8 py-8">
+                    <div className="flex flex-col my-4">
+                        <h3 className="text-lg">
+                            <b>Latest sensors IOT data:</b>
+                        </h3>
+                        <p className="mx-1">
+                            <b>Temperature:</b> {latestData.temperature}
+                        </p>
+                        <p className="mx-1">
+                            <b>Humidity:</b> {latestData.humidity}
+                        </p>
+                        {/* header of sensors data */}
+                    </div>
+
                     <h2 className="font-bold mx-2 text-lg my-1">
-                        Registered companies
+                        Registered companies:
                     </h2>
+
                     {loadingCompanies ? (
                         <p>Loading companies...</p> // Loading indicator within the container
                     ) : (
