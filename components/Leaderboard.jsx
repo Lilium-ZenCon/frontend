@@ -8,6 +8,7 @@ import Table from './Table';
 import companyAddresses from '../utils/companyAddresses.json';
 import { ethers } from 'ethers';
 import Company from '../abis/Company.json';
+import Register from '../abis/Register.json';
 
 const Leaderboard = () => {
     const [data, setData] = useState([]);
@@ -20,8 +21,26 @@ const Leaderboard = () => {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            for (let i = 0; i < companyAddresses.companies.length; i++) {
-                const contractAddress = companyAddresses.companies[i];
+            const registerAddress = '0x80AE69ffE6120ceBdFF1212BC5eF957EB2c0cE5c'
+            const registerAbi = Register.abi;
+            const registerContract = new ethers.Contract(
+                registerAddress,
+                registerAbi,
+                signer
+            );
+
+            const newCompanyAddresses = []
+
+            console.log(registerContract.companies(0))
+            for (let i = 0; i < 8; i++) {
+                const company = await registerContract.companies(i)
+                newCompanyAddresses.push(company)
+            }
+
+            console.log(newCompanyAddresses)
+
+            for (let i = 0; i < newCompanyAddresses.length; i++) {
+                const contractAddress = newCompanyAddresses[i];
                 const companyContract = new ethers.Contract(
                     contractAddress,
                     companyABI,
