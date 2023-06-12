@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import LeaderboardCard from './LeaderboardCard';
 import SearchBar from './SearchBar';
 import Table from './Table';
-import companyAddresses from '../utils/companyAddresses.json';
 import { ethers } from 'ethers';
 import Company from '../abis/Company.json';
 import Register from '../abis/Register.json';
@@ -43,6 +42,7 @@ const Leaderboard = () => {
                     companyABI,
                     signer
                 );
+                
                 let companyName = await companyContract.companyName();
                 let companyType = await companyContract.companyType();
                 let companyTokens =
@@ -65,6 +65,8 @@ const Leaderboard = () => {
             fetched.sort((a, b) => b.tokens - a.tokens);
 
             setData(fetched);
+
+            console.log(data)
         };
 
         if (typeof window.ethereum !== 'undefined') {

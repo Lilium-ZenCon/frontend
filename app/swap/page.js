@@ -8,7 +8,6 @@ import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import Register from '../../abis/Register.json';
 
-
 const swap = () => {
     const [oct, setOct] = useState(0);
     const [matic, setMatic] = useState(0);
@@ -22,8 +21,8 @@ const swap = () => {
 
     const swapTokens = async () => {
         const contractAddress = chosenCompany.address;
-		console.log(matic.toString())
-		console.log(ethers.utils.parseEther(matic.toString()).toString())
+        console.log(matic.toString());
+        console.log(ethers.utils.parseEther(matic.toString()).toString());
 
         const transaction = {
             to: contractAddress,
@@ -31,6 +30,8 @@ const swap = () => {
             data: '0x' // You can leave this empty if the receive() function doesn't require additional data
         };
 
+        provider = new ethers.providers.Web3Provider(ethereum);
+        signer = provider.getSigner();
         const tx = await signer.sendTransaction(transaction);
         console.log('Transaction sent:', tx.hash);
         toast('Transaction sent');
@@ -41,11 +42,11 @@ const swap = () => {
     };
 
     const handleOctChange = async (e) => {
-		console.log(chosenCompany)
+        console.log(chosenCompany);
         setOct(e.target.value);
-		let value = e.target.value != '' ? Number(e.target.value) : 0;
+        let value = e.target.value != '' ? Number(e.target.value) : 0;
         setMatic(value * Number(chosenCompany.price));
-		console.log({matic})
+        console.log({ matic });
     };
 
     const handleCompanyChange = (e) => {
@@ -61,22 +62,20 @@ const swap = () => {
     useEffect(() => {
         const registerAddress = '0x80AE69ffE6120ceBdFF1212BC5eF957EB2c0cE5c';
         const registerAbi = Register.abi;
-        
 
         let fetched = [];
         const getAddresses = async () => {
+            const registerContract = new ethers.Contract(
+                registerAddress,
+                registerAbi,
+                signer
+            );
 
-			const registerContract = new ethers.Contract(
-				registerAddress,
-				registerAbi,
-				signer
-			);
-
-			const newCompanyAddresses = []
+            const newCompanyAddresses = [];
 
             for (let i = 0; i < 8; i++) {
-                const company = await registerContract.companies(i)
-                newCompanyAddresses.push(company)
+                const company = await registerContract.companies(i);
+                newCompanyAddresses.push(company);
             }
 
             for (let i = 0; i < newCompanyAddresses.length; i++) {
@@ -95,7 +94,7 @@ const swap = () => {
                 });
             }
             setData(fetched);
-			setChosenCompany(fetched[0])
+            setChosenCompany(fetched[0]);
         };
         if (typeof window.ethereum !== 'undefined') {
             provider = new ethers.providers.Web3Provider(ethereum);
