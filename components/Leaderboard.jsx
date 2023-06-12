@@ -31,13 +31,10 @@ const Leaderboard = () => {
 
             const newCompanyAddresses = []
 
-            console.log(registerContract.companies(0))
             for (let i = 0; i < 8; i++) {
                 const company = await registerContract.companies(i)
                 newCompanyAddresses.push(company)
             }
-
-            console.log(newCompanyAddresses)
 
             for (let i = 0; i < newCompanyAddresses.length; i++) {
                 const contractAddress = newCompanyAddresses[i];
