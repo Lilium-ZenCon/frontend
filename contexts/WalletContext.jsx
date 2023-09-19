@@ -20,6 +20,7 @@ const checkWalletConnection = async () => {
     if (accounts.length > 0) {
       setAccount(accounts[0]);
       console.log('MetaMask connected:', accounts[0]);
+      console.log("hey")
     } else {
       console.warn('MetaMask is not connected.');
       setAccount(null);
@@ -53,7 +54,7 @@ const checkWalletConnection = async () => {
   useEffect(() => {
     // Check the wallet connection when the component mounts
     checkWalletConnection();
-  }, []); 
+  }, [account]); 
   
 
   const value = {

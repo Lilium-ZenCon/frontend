@@ -1,14 +1,17 @@
 'use client';
 import Image from 'next/image';
 import logo from '../public/assets/icon.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useMetaMask } from '../contexts/WalletContext';
+import { useContract } from '../contexts/ContractContext';
 
 const NavBar = () => {
     const { account, connectMetaMask } = useMetaMask();
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const { contractBalance } = useContract();
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -31,7 +34,7 @@ const NavBar = () => {
                     >
                         Leaderboard
                     </Link>
-					<Link
+                    <Link
                         className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
                         href="/#how-it-works"
                     >
@@ -53,12 +56,19 @@ const NavBar = () => {
                             className="hover:bg-hover_grey px-4 py-2 rounded-full border-[1px] border-grey transition duration-300 ease-in-out flex"
                             onClick={toggleDropdown}
                         >
-                            {account.substring(0, 6) + '...' + account.substring(38, 42)}
-							<div className="flex items-center ml-2">
-                            <span>{123} ETH</span>
-                            {/* Add an icon for representing the balance */}
-                            <img src="/path-to-your-icon.png" alt="Balance Icon" width="24" height="24" />
-                        </div>
+                            {account.substring(0, 6) +
+                                '...' +
+                                account.substring(38, 42)}
+                            <div className="flex items-center ml-2">
+                                <span>{contractBalance} ETH</span>
+                                {/* Add an icon for representing the balance */}
+                                <img
+                                    src="/path-to-your-icon.png"
+                                    alt="Balance Icon"
+                                    width="24"
+                                    height="24"
+                                />
+                            </div>
                         </button>
                         {isDropdownOpen && (
                             <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-full p-2">
