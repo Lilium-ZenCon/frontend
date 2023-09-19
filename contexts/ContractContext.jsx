@@ -58,12 +58,30 @@ export const ContractContextProvider = ({ children }) => {
             console.error('Error fetching contract balance:', error);
         }
     };
+
+    const withdraw = async () => {
+        try {
+            if (contract) {
+                // Call the withdraw function on the contract
+                const tx = await contract.withdraw();
+
+                // Wait for the transaction to be mined
+                await tx.wait();
+
+                // Refresh the contract balance
+                await fetchContractBalance();
+            }
+        } catch (error) {
+            console.error('Error withdrawing from contract:', error);
+        }
+    };
     // Define other contract-related functions
 
     const contextValue = {
         contract,
         provider,
         contractBalance,
+        withdraw
         // Other contract-related functions or values
     };
 

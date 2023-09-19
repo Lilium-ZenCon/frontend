@@ -11,7 +11,7 @@ const NavBar = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const { contractBalance } = useContract();
+    const { contractBalance, withdraw } = useContract();
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -75,7 +75,7 @@ const NavBar = () => {
                                 {/* Add your dropdown content and links here */}
                                 <ul>
                                     <li>
-                                        <Link href="/">Withdraw</Link>
+                                        <Link onClick={withdraw}>Withdraw</Link>
                                     </li>
                                 </ul>
                             </div>
