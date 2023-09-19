@@ -7,18 +7,8 @@ import HowItWorks from '@/components/HowItWorks';
 
 export default function Home() {
     return (
-        <div className="w-full overflow-hidden scroll-smooth	">
+        <div className="w-full overflow-hidden scroll-smooth">
             <Hero id="hero" />
-            <Image
-                src={logo}
-                alt="logo"
-                className="absolute -z-10 right-0 top-[38%] overflow-hidden"
-            />
-            <Image
-                src={heroPic}
-                alt="hero-bg"
-                className="absolute w-[50%] right-24 top-[62vh]"
-            />
             <Leaderboard id="leaderboard" />
             <HowItWorks id="how-it-works" />
         </div>
