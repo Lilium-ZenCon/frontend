@@ -5,7 +5,7 @@ import heroPic from 'public/assets/hero-img.svg';
 
 export default function Home() {
     return (
-        <div className="w-full overflow-hidden scroll-smooth	">
+        <div className="w-full overflow-hidden scroll-smooth">
             <Hero id="hero" />
             <Image
                 src={logo}
