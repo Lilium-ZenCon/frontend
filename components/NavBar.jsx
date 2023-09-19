@@ -30,19 +30,19 @@ const NavBar = () => {
                     </Link>
                     <Link
                         className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
-                        href="/#leaderboard"
+                        href="/#how-it-works"
                     >
-                        Leaderboard
+                        How it works
                     </Link>
                     <Link
                         className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
-                        href="/#how-it-works"
+                        href='/company'
                     >
-                        Add company
+                        Company
                     </Link>
                     <Link
                         className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
-                        href="/#how-it-works"
+                        href="/iot"
                     >
                         IoT Simulation
                     </Link>
@@ -75,7 +75,7 @@ const NavBar = () => {
                                 {/* Add your dropdown content and links here */}
                                 <ul>
                                     <li>
-                                        <Link onClick={withdraw}>Withdraw</Link>
+                                        <button onClick={withdraw}>Withdraw</button>
                                     </li>
                                 </ul>
                             </div>

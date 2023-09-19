@@ -3,12 +3,11 @@ import howWorksPic from 'public/assets/how-works.svg';
 
 const HowItWorks = () => {
 	return (
-		<div className="flex flex-row justify-between" id="how-it-works">
+		<div className="flex flex-row justify-between bg-darkgreen text-white" id="how-it-works">
 			<Image className="my-[2%] mx-[4%]" src={howWorksPic} alt="logo" width="400" height="400" />
 
-			<div className="my-[2%] mr-[4%] ">
-				<h5 className="text-sm font-bold text-grey mb-1 mt-[4%]">Green Trace</h5>
-				<h1 className="text-6xl font-bold mb-2 leading-tight">How it works</h1>
+			<div className="my-[2%] mr-[4%]">
+				<h1 className="text-6xl font-bold mb-2 leading-tight mt-[5%]">How it works</h1>
 				<p className="my-[1%]">
 					Discover the most incredible way to save the planet! With Green Trace, credit carbon emitting companies can monitor the temperature and humidity in their forest reserves through
 					state-of-the-art IoT devices. And you know what's even cooler? We use artificial intelligence to check if the data falls within the ideal parameters for the region. If they do,

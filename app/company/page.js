@@ -12,12 +12,12 @@ const company = () => {
             <div className='ml-48 mt-24'>
                 <div className='w-1/2 min-h-1/2 py-12 bg-darkgreen rounded-lg'>
                     <div className='flex justify-center py-4 gap-4'>
-                        <button className='bg-lightgreen w-64 px-6 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out' onClick={() => setType('companies')}>Add new device</button>
-                        <button className='bg-lightgreen w-64 px-6 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out' onClick={() => setType('device')}>Add company</button>
+                        <button className='bg-lightgreen w-64 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out font-bold text-lg' onClick={() => setType('companies')}>New company</button>
+                        <button className='bg-lightgreen w-64 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out font-bold text-lg' onClick={() => setType('device')}>New device</button>
                     </div>
                     {type === 'companies' && (
                         <div>
-                            <h1 className='text-white font-bold text-2xl flex justify-center mt-8'>Add new company</h1>
+                            <h1 className='text-white font-bold text-3xl flex justify-center mt-12 mb-4'>New company</h1>
                             <div className='flex justify-around'>
                                 <div className='flex flex-col'>
                                     <label className=" text-white py-1" >Company Name:</label>
@@ -49,13 +49,13 @@ const company = () => {
                                 </div>
                             </div>
                             <div className='flex justify-center'>
-                                <button className='bg-lightgreen w-64 px-6 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out'>Add device</button>
+                                <button className='bg-lightgreen w-64 px-6 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out'>Add new company</button>
                             </div>
                         </div>
                     )}
                     {type == 'device' && (
                         <div>
-                            <h1 className='text-white font-bold text-2xl flex justify-center mt-8'>Add new device</h1>
+                            <h1 className='text-white font-bold text-3xl flex justify-center mt-12 mb-4'>New company</h1>
                             <div className='flex justify-around'>
                                 <div className='flex flex-col'>
                                     <label className=" text-white py-1" >Company Name:</label>
@@ -76,7 +76,7 @@ const company = () => {
                                 </div>
                             </div>
                             <div className='flex justify-center'>
-                                <button className='bg-lightgreen w-64 px-6 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out'>Add device</button>
+                                <button className='bg-lightgreen w-64 px-6 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out'>Add new device</button>
                             </div>
                         </div>
                     )}
