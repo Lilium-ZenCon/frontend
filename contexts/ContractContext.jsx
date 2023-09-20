@@ -48,7 +48,7 @@ export const ContractContextProvider = ({ children }) => {
         }
     
         fetchData();
-    }, [contract]);
+    }, []);
 
     const getContractBalance = async () => {
         try {

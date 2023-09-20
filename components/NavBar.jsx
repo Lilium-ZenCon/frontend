@@ -21,24 +21,18 @@ const NavBar = () => {
         <div className="flex justify-between font-semibold text-grey items-center my-6 mx-10 font-montserrat">
             <span className="flex justify-between items-center gap-14">
                 <Image src={logo} alt="logo" width="50" height="50" />
-                <li className="list-none gap-14 flex items-center scroll-smooth	">
+                <a className="list-none gap-14 flex items-center scroll-smooth	">
                     <Link
                         className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
-                        href="/#hero"
+                        href="/"
                     >
                         Home
                     </Link>
                     <Link
                         className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
-                        href="/#how-it-works"
+                        href="/forest"
                     >
-                        How it works
-                    </Link>
-                    <Link
-                        className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
-                        href='/company'
-                    >
-                        Company
+                        Forest
                     </Link>
                     <Link
                         className="hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out"
@@ -46,28 +40,22 @@ const NavBar = () => {
                     >
                         IoT Simulation
                     </Link>
-                </li>
+                </a>
             </span>
             <div className="relative">
                 {account ? (
                     <>
                         <button
                             type="button"
-                            className="hover:bg-hover_grey px-4 py-2 rounded-full border-[1px] border-grey transition duration-300 ease-in-out flex"
+                            className="hover:bg-hover_grey px-4 py-2 rounded-full border-[1px] border-grey transition duration-300 ease-in-out flex divide-x-2 divide-grey "
                             onClick={toggleDropdown}
-                        >
+                        >   
+                            <p>
                             {account.substring(0, 6) +
                                 '...' +
-                                account.substring(38, 42)}
-                            <div className="flex items-center ml-2">
+                                account.substring(38, 42)} </p>
+                            <div className="flex items-center ml-2 pl-2">
                                 <span>{contractBalance} ETH</span>
-                                {/* Add an icon for representing the balance */}
-                                <img
-                                    src="/path-to-your-icon.png"
-                                    alt="Balance Icon"
-                                    width="24"
-                                    height="24"
-                                />
                             </div>
                         </button>
                         {isDropdownOpen && (
