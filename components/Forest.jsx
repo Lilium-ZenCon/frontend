@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import Certifier from '@/abis/Certifier'
 
 
 const Forest = () => {
@@ -14,17 +15,16 @@ const Forest = () => {
     const initializeContract = async () => {
         try {
           if (typeof window.ethereum !== "undefined") {
-            const provider = new ethers.providers.Web3Provider(window.ethereum)
-            const signer = await provider.getSigner();
-            const contractAddress = "";
+            const contractAddress = "0xe73bc5bd4763a3307ab5f8f126634b7e12e3da9b";
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+            const companyContract = new ethers.Contract(
+              contractAddress, //colocar endereço
+              Certifier.abi, //Colocar ABI
+             provider.getSigner() 
+            );
     
-            // const companyContract = new ethers.Contract(
-            //   contractAddress, //colocar endereço
-            //   CompanyAbi.abi, //Colocar ABI
-            //   signer 
-            // );
-    
-            // setContract(companyContract);
+            setContract(companyContract);
 
           } else {
             console.error("MetaMask is not installed or not available.");
@@ -46,9 +46,9 @@ const Forest = () => {
               return;
             }
            
-            //await contract.newCompany(); //Colocar aqui a função do contrato
-
-            console.log('Successfully created company');
+            await contract.newCompany("QmZFqRNLi26tU7TYeLPNxF6kRiYkG9cBMmy5ngrSmAB5j6", "Tupan", "Brazil", "Finance", 100, 100, "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"); //Colocar aqui a função do contrato
+            console.log('Company created')
+            
           } 
           catch(error){
             console.error("Error registring a forest:", error);

@@ -9,22 +9,12 @@ const HowItWorks = () => {
 			<div className="my-[2%] mr-[4%]">
 				<h1 className="text-6xl font-bold mb-2 leading-tight mt-[5%]">How it works</h1>
 				<p className="my-[1%]">
-					Discover the most incredible way to save the planet! With Green Trace, credit carbon emitting companies can monitor the temperature and humidity in their forest reserves through
-					state-of-the-art IoT devices. And you know what's even cooler? We use artificial intelligence to check if the data falls within the ideal parameters for the region. If they do,
-					it's time to celebrate! We issue carbon credit tokens to recognize your amazing actions. Now we're truly talking about making a difference!
+					Discover an extraordinary way to make a positive impact on our planet! At Lilium, we're changing the game in the carbon credit market. Our IoT devices enable carbon-emitting companies to monitor forest reserves' temperature and humidity. What's even more remarkable? We leverage artificial intelligence to validate data against ideal regional parameters. When it aligns perfectly, the carbon credit tokens are minted, acknowledging your remarkable efforts. This is genuine, tangible change in action!
 				</p>
-				<p className="my-[1%]">
-					But we don't stop there. For you, user, we offer a unique journey. Calculate the amount of carbon you need to offset based on your daily activities. Be an environmental superhero!
-					Purchase our carbon credit tokens, issued by partner companies, and track your progress on a personalized dashboard. See how every step you take helps protect our planet. It's time
-					to show the world the power of your contribution!
+				<p className='my[1%]'>
+					Lilium addresses carbon market challenges by operating as a certifier, employing IoT, Blockchain, and AI technologies. IoT sensors monitor real-time forest conditions and record data securely on the blockchain, complemented by Cartesi's virtual machine for complex operations. Two AI systems detect anomalies and verify IoT device locations. Anomalies trigger inspections, while standards met lead to carbon credit token generation, enabling carbon footprint compensation.
 				</p>
-				<p className="my-[1%]">Join us and be part of this green revolution. Together, we can make a difference!</p>
-				<button
-					type="button"
-					className="hover:bg-white px-4 py-2 rounded-full border-[1px] border-grey transition duration-300 ease-in-out w-44 font-semibold text-white bg-darkgreen hover:text-grey text-md mt-[4%]"
-				>
-					Learn more
-				</button>
+				
 			</div>
 		</div>
 	);
