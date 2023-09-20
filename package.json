@@ -16,6 +16,8 @@
         "bufferutil": "^4.0.7",
         "chart.js": "^4.3.0",
         "ethers": "^5.7.2",
+        "gql": "^1.1.2",
+        "graphql-tag": "^2.12.6",
         "net": "^1.0.2",
         "next": "13.4.4",
         "postcss": "8.4.24",

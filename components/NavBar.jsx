@@ -55,7 +55,7 @@ const NavBar = () => {
                                 '...' +
                                 account.substring(38, 42)} </p>
                             <div className="flex items-center ml-2 pl-2">
-                                <span>{contractBalance} ETH</span>
+                                <span>{contractBalance} Tokens</span>
                             </div>
                         </button>
                         {isDropdownOpen && (
