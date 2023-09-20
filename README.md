@@ -20,4 +20,7 @@ To set up the GreenTrace frontend locally, follow these steps:
 - Clone this repository: `git clone https://github.com/Lilium-ZenCon/frontend.git`
 - Install the dependencies: `npm install`
 - Start the development server: `npm run dev`
+- In your browser, access the address `http://localhost:3000/`.
+
+
 
